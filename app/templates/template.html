@@ -1,0 +1,35 @@
+{%- extends "base.html" -%}
+
+{%- block css -%}
+{{ super() }}
+{%- assets "scss_all" -%}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+{%- endassets -%}
+{%- endblock -%}
+
+{%- block js -%}
+{{ super() }}
+<script type="text/javascript" src="{{ static('js/index.js') }}"></script>
+{%- endblock -%}
+
+{%- block body -%}
+<nav class="active-tab-{% block active_tab %}{% endblock %}">
+	<div class="content">
+		<ul>
+			<li class="tab-home">
+				<a href="{{ url_for('client.index') }}">Home</a>
+			</li>
+			<li class="tab-typography">
+				<a href="{{ url_for('client.typography') }}">Typography</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<section>
+	<div class="content card">
+		{%- block content -%}
+
+		{%- endblock -%}
+	</div>
+</section>
+{%- endblock body -%}

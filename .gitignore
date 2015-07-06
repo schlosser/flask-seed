@@ -1,0 +1,17 @@
+# Folders
+/app/static/css/gen
+/lib
+/local
+/log/*
+/bin
+/include
+*.pyc
+*.swp
+.Python
+*.log
+
+# Secrets / Authentication
+secrets.py
+
+# SCSS
+.webassets-cache

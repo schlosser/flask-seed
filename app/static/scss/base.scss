@@ -1,0 +1,313 @@
+/*************************************************
+ * base.scss - Dan Schlosser <dan@schlosser.io>  *
+ *                                               *
+ * This file should either contain or import all *
+ * of the styles that should exist on every page *
+ * of the app.                                   *
+ *************************************************/
+
+@import 'media_queries';
+@import 'utils';
+@import 'colors';
+
+
+/************************
+ * Typography Variables *
+ ************************/
+
+// Font weights
+$extra-bold: 800;
+$bold: 700;
+$regular: 400;
+$thin: 300;
+
+// Fonts
+$sans: 'Helvetica Neue', Helvetica, Ariel sans-serif;
+$serif: Georgia, serif;
+$monospace: "Lucida Console", Monaco, monospace;
+
+
+/**********
+ * Basics *
+ **********/
+
+html, body {
+    font-family: $sans;
+    font-weight: $regular;
+    height: 100%;
+    font-size: 16px;
+}
+
+p, .p {
+    margin-bottom: 1rem;
+    font-family: $sans;
+    font-weight: $regular;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    a {
+        color: $blue;
+        &:hover {
+            color: $blue;
+            text-decoration: none;
+        }
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+ul, ol {
+    padding: 0;
+    li {
+        @extend .p;
+    }
+}
+
+em, .em {
+    font-style: italic;
+}
+
+strong, .strong {
+    font-weight: 700;
+}
+
+small, .small {
+    font-size: 0.8em !important;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/***********
+ * Headers *
+ ***********/
+
+h1, .h1 {
+    font-family: $serif;
+    font-weight: $extra-bold;
+    font-size: 4.5rem;
+    line-height: 5.5rem;
+    color: $black;
+}
+
+h2, .h2 {
+    font-family: $serif;
+    font-weight: $bold;
+    font-size: 3rem;
+    line-height: 3.5rem;
+    color: $black;
+}
+
+h3, .h3 {
+    font-family: $serif;
+    font-weight: $regular;
+    font-size: 2.25rem;
+    line-height: 3rem;
+    color: $black;
+}
+
+h4, .h4 {
+    font-family: $serif;
+    font-weight: $regular;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    color: $black;
+}
+
+h5, .h5 {
+    font-family: $serif;
+    font-weight: $bold;
+    font-size: 1rem;
+    line-height: 2rem;
+    color: $black;
+}
+
+h6, .h6 {
+    font-family: $sans;
+    font-weight: $regular;
+    font-weight: $bold;
+    font-size: 0.8rem;
+    line-height: 1.25rem;
+    text-transform: uppercase;
+    color: $black;
+}
+
+
+/********
+ * Code *
+ ********/
+
+code {
+    padding: 0;
+    padding-top: 0.2em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 3px;
+    overflow: auto;
+    font-family: $monospace;
+
+    &:before, &:after {
+        letter-spacing: -0.2em;
+        content: "\00a0";
+    }
+}
+
+pre {
+    font-family: $monospace;
+    padding: 1rem;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.4rem;
+    background-color: $ultra-light-gray;
+    margin-bottom: 1rem;
+    word-break: normal;
+    word-wrap: normal;
+    code {
+        padding: 0;
+        margin: 0;
+        font-size: 100%;
+        word-break: normal;
+        white-space: pre;
+        overflow: initial;
+        background-color: transparent;
+        border: 0;
+        &:before, &:after {
+            content: normal;
+        }
+    }
+}
+
+
+/*********
+ * Forms *
+ *********/
+
+form {
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.form-control {
+    display: block;
+    margin: 0 0 1rem;
+    input, textarea {
+        display: block;
+        width: 100%;
+    }
+}
+
+label {
+    @extend .h6;
+    display: block;
+}
+
+input:not([type="submit"]), textarea, {
+    display: inline-block;
+    font-family: $sans;
+    font-weight: $regular;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border: 1px solid $gray;
+    @include border-box;
+    vertical-align: top;
+    line-height: 1rem;
+    @include placeholder {
+        font-family: $sans;
+        font-weight: $regular;
+        font-size: 1rem;
+    }
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="submit"], button, .button {
+    @extend .h6;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border: 1px solid $blue;
+    background-color: $blue;
+    @include border-box;
+    vertical-align: top;
+    color:white;
+    line-height: 1.2rem;
+    margin: 0;
+
+    &:hover {
+        cursor: pointer;
+        color: $light-gray;
+    }
+}
+
+/**********
+ * Tables *
+ **********/
+
+table {
+    margin-bottom: 1rem;
+    td, th {
+        @extend .p;
+        padding: 0.5rem 1rem;
+    }
+    thead th, tfoot td {
+        color: $white;
+        background-color: $blue;
+    }
+    tbody {
+        tr {
+            &:nth-child(odd) {
+                background-color: $ultra-light-gray;
+            }
+            &:nth-child(even) {
+                background-color: $white;
+            }
+        }
+    }
+}
+
+/**********************
+ * Responsive Scaling *
+ **********************/
+
+@media screen and (max-width: $xl-desktop-max) {
+    html, body {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: $desktop-max) {
+    html, body {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: $tablet-landscape-max) {
+    html, body {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: $tablet-portrait-max) {
+    html, body {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: $phone-max) {
+    html, body {
+        font-size: 10px;
+    }
+}

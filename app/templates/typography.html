@@ -1,0 +1,100 @@
+{%- extends "template.html" -%}
+{% block title %}Typography | {{ super() }}{% endblock %}
+{% block active_tab %}typography{% endblock %}
+
+{%- block content -%}
+<h1>Header 1</h1>
+<h2>Header 2</h2>
+<h3>Header 3</h3>
+<h4>Header 4</h4>
+<h5>Header 5</h5>
+<h6>Header 6</h6>
+
+<p>Here is <strong>strong</strong> and <em>em</em></p>
+
+<ul>
+	<li>List item</li>
+	<li>List item</li>
+	<li>List item</li>
+</ul>
+
+<ol>
+	<li>List item</li>
+	<li>List item</li>
+	<li>List item</li>
+</ol>
+
+<p>This is a <a href="https://schlosser.io">link</a>.</p>
+<h4><a href="https://schlosser.io">Links outside paragraphs look like this.</a></h4>
+
+<p>Here is a <code>code</code> sample:</p>
+
+<pre><code>def hello(name="World"):
+print "Hello {}".format(name)</code></pre>
+
+<p>Table with thead, tfoot, and tbody</p>
+<div class="table-centered">
+	<table>
+		<thead>
+			<tr>
+				<th>Header content 1</th>
+				<th>Header content 2</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Body content 1</td>
+				<td>Body content 2</td>
+			</tr>
+			<tr>
+				<td>Body content 3</td>
+				<td>Body content 4</td>
+			</tr>
+			<tr>
+				<td>Body content 5</td>
+				<td>Body content 6</td>
+			</tr>
+			<tr>
+				<td>Body content 7</td>
+				<td>Body content 8</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>Footer content 1</td>
+				<td>Footer content 2</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+<p>Forms, with <code>&lt;div class="form-control"&gt;</code> and without:</p>
+<form>
+	<div class="form-control">
+		<label>Name</label>
+		<input type="text" placeholder="Type your name here">
+	</div>
+	<div class="form-control">
+		<label>Email</label>
+		<input type="email" placeholder="Type your email here">
+	</div>
+	<div class="form-control">
+		<label>Comments</label>
+		<textarea placeholder="Leave your comments here..."></textarea>
+	</div>
+	<div class="form-control">
+		<input type="submit" value="Submit">
+	</div>
+</form>
+<form>
+	<input type="text" placeholder="Type your name here">
+	<input type="email" placeholder="Type your email here">
+	<input type="submit" value="Submit">
+</form>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet mi eu tempor vehicula. Cras non porttitor neque. Aenean quis arcu volutpat, finibus sem sit amet, ultrices tortor. In id lorem elementum, efficitur purus non, tempus metus. Donec lorem quam, suscipit vel volutpat quis, aliquet id neque. Nunc a posuere felis, eget vehicula arcu. Nulla vel sem ut est mollis eleifend. Sed feugiat iaculis turpis, sed sodales lorem facilisis eu. Nam nec sem ut leo bibendum dictum. Nullam sodales massa id dui consectetur pellentesque. Vestibulum vel eros eget odio iaculis imperdiet ac ac erat. Sed sit amet mi imperdiet, varius tortor sit amet, euismod nibh.</p>
+
+<p>In eleifend nisi ac sapien mattis, id commodo mauris volutpat. Vestibulum varius lectus eu dolor vehicula fringilla. Vivamus consequat pellentesque augue eu sagittis. Quisque eget mi dui. Vestibulum dignissim accumsan tortor. Morbi eget risus ipsum. Integer at massa metus. Aenean vel placerat lorem. Vestibulum vulputate, nulla vel iaculis aliquet, enim turpis maximus dolor, non vestibulum massa sem nec sem. In interdum consectetur sapien eget sollicitudin. Nunc leo ipsum, elementum vitae ultrices quis, gravida id felis. Mauris fringilla sit amet justo at dapibus. Quisque sed auctor erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut mattis tortor felis, vel elementum risus auctor eget.</p>
+
+<p>Ut commodo orci a ullamcorper fermentum. Ut purus orci, lacinia quis feugiat ullamcorper, varius a lectus. Nam fringilla dignissim libero, at ullamcorper turpis pulvinar vitae. Cras tristique quam lorem, in ultricies leo feugiat vel. Vestibulum tempus, nisi et facilisis tincidunt, neque odio fermentum urna, id rutrum nibh sapien a felis. Mauris tempus iaculis lobortis. Cras et consectetur urna, sed sollicitudin enim. Donec vitae bibendum dolor, sed mattis ligula.</p>
+{%- endblock -%}
