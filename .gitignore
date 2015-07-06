@@ -9,6 +9,7 @@
 *.swp
 .Python
 *.log
+man/
 
 # Secrets / Authentication
 secrets.py

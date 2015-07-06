@@ -1,8 +1,6 @@
 # `/app`
 
-All code relevant to running Eventum lives here.
-
-## Subdirectories
+All code relevant to running Flask-Seed lives here.
 
 - `forms`: [Flask-WTForms][flask-wtforms] models, used for generating forms in HTML and validating input
 - `lib`: Misc helpers, tasks, and modular libraries
@@ -10,9 +8,6 @@ All code relevant to running Eventum lives here.
 - `routes`: The Flask Blueprints that handle routing
 - `static`: CSS, JS, and images
 - `templates`: HTML templates
-
-## Notable files
-
 - `__init__.py`: Holds all the setup and initialization of dependencies, Blueprints, and the database.
 
 

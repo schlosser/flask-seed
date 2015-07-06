@@ -3,5 +3,90 @@
 {% block active_tab %}home{% endblock %}
 
 {%- block content -%}
-<h1>Flask-Seed</h1>
+<h1 id="flask-seed"><a name="user-content-flask-seed" href="#flask-seed" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Flask-Seed</h1>
+<p>Flask-Seed is an opinionated boilerplate for your next Flask app.  It uses the best practices, so you don&rsquo;t have to.</p>
+<h2 id="stack"><a name="user-content-stack" href="#stack" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Stack</h2>
+<ul>
+<li>Built in <a href="http://flask.pocoo.org/">Flask</a></li>
+<li><a href="http://flask-mongoengine.readthedocs.org/en/latest/">Flask-Mongoengine</a> and <a href="http://docs.mongoengine.org/">Mongoengine</a> are used to interface with <a href="https://www.mongodb.org/">MongoDB</a>  </li>
+<li>Forms and validation are done through <a href="https://flask-wtf.readthedocs.org/en/latest/">Flask-WTForms</a> and <a href="http://wtforms.readthedocs.org/en/latest/">WTForms</a></li>
+<li>CSS is generated from <a href="http://sass-lang.com/">SCSS</a> and managed with <a href="http://flask-assets.readthedocs.org/en/latest/">Flask-Assets</a></li>
+<li>Routing is done using <a href="http://flask.pocoo.org/docs/blueprints/">Blueprints</a></li>
+<li>Testing is done using <code>nosetests</code> and <code>unittest</code>.</li>
+</ul>
+<h2 id="first-time-setup"><a name="user-content-first-time-setup" href="#first-time-setup" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>First-Time Setup</h2>
+<p>Flask-Seed runs natively on Linux and OSX in a virtual environment, using <a href="http://virtualenv.readthedocs.org/en/latest/">Virtualenv</a>. To get it up an running, follow these steps:</p>
+<ol>
+<li>
+<p>Generate secrets files, using <a href="http://flask.pocoo.org/docs/0.10/quickstart/#sessions">good secret keys</a>:</p>
+<div class="codehilite"><pre>cp config/example.secrets.py config/secrets.py
+vim config/secrets.py
+</pre></div>
+
+
+</li>
+<li>
+<p>Change all the <code>CHANGEME</code>s.  You should be able to run this command without seeing any output:</p>
+<div class="codehilite"><pre>grep -rn CHANGEME .
+</pre></div>
+
+
+</li>
+<li>
+<p>Install <a href="https://www.mongodb.org/">MongoDB</a> (<a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/">Ubuntu Linux</a>, <a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/#install-mongodb-with-homebrew">OSX</a>).</p>
+<blockquote>
+<p>On OSX, you may have to run <code>mkdir /data /data/db</code> before you can run <code>mongod</code> without errors.</p>
+</blockquote>
+</li>
+<li>
+<p>Install <a href="http://virtualenv.readthedocs.org/en/latest/">VirtualEnv</a>:<br />
+    <div class="codehilite"><pre>sudo pip install virtualenv
+</pre></div>
+</p>
+</li>
+<li>
+<p>Install SASS gem <code>gem install sass</code></p>
+<blockquote>
+<p>Otherwise, you will see an intermittent <code>OSError</code> </p>
+</blockquote>
+</li>
+</ol>
+<h2 id="developing"><a name="user-content-developing" href="#developing" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Developing</h2>
+<div class="codehilite"><pre>./develop.sh                    <span class="c"># MongoDB, virtualenv, and Pip</span>
+<span class="nb">source </span>bin/activate             <span class="c"># Enter the virtual environment</span>
+python run.py                   <span class="c"># Run the application</span>
+</pre></div>
+
+
+<p>Finally, go to <code>localhost:5000</code> in your web browser.</p>
+<h2 id="testing"><a name="user-content-testing" href="#testing" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Testing</h2>
+<p>Tests live in the <code>test</code> directory, and can be run via <code>nosetests</code>.  We also use <code>flake8</code> for linting <code>.py</code> files.</p>
+<p>First, enter your development environment.  See &ldquo;Developing&rdquo; for more.  Then, run the tests:</p>
+<div class="codehilite"><pre>flake8 app config <span class="nb">test</span>          <span class="c"># Run the flake8 linter on our python files</span>
+nosetests --with-progressive    <span class="c"># Run test scripts</span>
+</pre></div>
+
+
+<h2 id="organization-structure"><a name="user-content-organization-structure" href="#organization-structure" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Organization / Structure</h2>
+<div class="codehilite"><pre>.
+├── app              <span class="c"># All code related to the running of the app</span>
+│   ├── forms        <span class="c"># Flask-WTForms models, used for generating forms in </span>
+│   │                <span class="c">#     HTML and validating input</span>
+│   ├── lib          <span class="c"># Misc helpers, tasks, and modular libraries</span>
+│   ├── models       <span class="c"># Mongoengine Models</span>
+│   ├── routes       <span class="c"># All Flask routes, using Blueprints</span>
+│   ├── static       <span class="c"># Static files.  Note: All files in here are public</span>
+│   │   ├── css      <span class="c"># CSS</span>
+│   │   │   ├── lib  <span class="c"># CSS libraries</span>
+│   │   │   └── gen  <span class="c"># CSS generated from SCSS</span>
+│   │   ├── img      <span class="c"># Images</span>
+│   │   ├── js       <span class="c"># JavaScript files</span>
+│   │   └── scss     <span class="c"># Stylesheets</span>
+│   ├── templates    <span class="c"># HTML templates</span>
+│   └── __init__.py  <span class="c"># All app-wide setup.  Called by `run.py`</span>
+├── config           <span class="c"># Configuration files</span>
+├── develop.sh       <span class="c"># Used for non-Vagrant local Development</span>
+├── run.py           <span class="c"># Runs the app!</span>
+└── <span class="nb">test</span>             <span class="c"># Unit tests</span>
+</pre></div>
 {%- endblock -%}

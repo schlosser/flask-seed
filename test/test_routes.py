@@ -1,6 +1,6 @@
 """
 .. module:: test_routes
-    :synopsis: This module tests that routes behaive as expected in Eventum.
+    :synopsis: This module tests that routes behave as expected.
 
 .. moduleauthor:: Dan Schlosser <dan@dan@schlosser.io>
 """
@@ -9,7 +9,7 @@ from base import TestingTemplate
 
 
 class TestRoutes(TestingTemplate):
-    """Test the basic behavior of routes in eventum."""
+    """Test the basic behavior of routes."""
 
     OK = (200, 201)
     REDIRECT = (301, 302)

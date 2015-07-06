@@ -1,15 +1,15 @@
 """
 .. module:: error
-    :synopsis: Home to the :class:`EventumError` class, which contains
+    :synopsis: Home to the :class:`Error` class, which contains
         namespaced subclasses that should be used when raising and handling
-        exceptions in eventum.
+        exceptions.
 
 .. moduleauthor:: Dan Schlosser <dan@dan@schlosser.io>
 
 This module is slightly complicated.  It contains three main components: the
-nested dictionary ``_ERROR_DATA``, the class :class:`EventumError`, and the
+nested dictionary ``_ERROR_DATA``, the class :class:`Error`, and the
 function :func:`_make_subclasses`.  The dictionary ``_ERROR_DATA`` contains a
-family tree of subclasses for :class:`EventumError`. Each key is an error name,
+family tree of subclasses for :class:`Error`. Each key is an error name,
 and the value is a four-tuple of::
 
     (message, error_code, http_status_code, subclasses)
@@ -35,27 +35,27 @@ common baseclasses, and have similar ``error_code`` values.
 Example usage::
 
 
-    from app.lib.error import EventumError
+    from app.lib.error import Error
     # ...
     try:
-        raise EventumError.GCalAPI.NotFound.UpdateFellBackToCreate()
-    except EventumError.GCalAPI.NotFound.UpdateFellBackToCreate:
+        raise Error.Some.Kind.OfError()
+    except Error.Some.Kind.OfError:
         # handle error...
 
 However, we can also except multiple errors by excepting their common
 baseclass::
 
 
-    from app.lib.error import EventumError
+    from app.lib.error import Error
     # ...
     try:
         if something():
-            raise EventumError.GCalAPI.NotFound.UpdateFellBackToCreate()
+            raise Error.Some.Kind.OfError()
         elif something_else():
-            raise EventumError.GCalAPI.BadStatusLine()
+            raise Error.Some.OtherError()
         else:
-            raise EventumError.GCAlAPI():
-    except EventumError.GCalAPI:
+            raise Error.Some():
+    except Error.Some:
         # handles all above errors.
 
 """
@@ -134,22 +134,20 @@ _ERROR_DATA = {
 }
 
 
-class EventumError(Exception):
-    """The base error class for Eventum.  All errors are subclasses of
-    :class:`EventumError`.
-    """
+class Error(Exception):
+    """The base error class.  All errors are subclasses of :class:`Error`."""
 
     message = 'An error occurred.'
     error_code = 0
     http_status_code = HTTP_INTERNAL_SERVER_ERROR
 
     def __init__(self, *subs, **kwargs):
-        """Called to create an instance of :class:`EventumError`.  Subclasses
-        of :class:`EventumError` inherit this method.  It uses ``subs`` to
+        """Called to create an instance of :class:`Error`.  Subclasses
+        of :class:`Error` inherit this method.  It uses ``subs`` to
         populate any format strings in the class's error message, and saves
         any kwargs as data attributes to be associate with the request.
 
-        Initializing a subclass of EventumError will also log to the app log.
+        Initializing a subclass of Error will also log to the app log.
 
         :param subs: Strings to subsitute into the format string for the error
             message associated with class.
@@ -237,14 +235,14 @@ def _make_subclasses(error_data, baseclass):
         it surface to the user, and subcalsses is a dictionary of this same
         type, containing data for subclasses of this error.
     :param baseclass: The error class to attach these errors onto.
-    :type baseclass: :class:`EventumError` or one of its subclasses.
+    :type baseclass: :class:`Error` or one of its subclasses.
     """
     if not error_data:
         return
 
     for e_type, e_attrs in error_data.iteritems():
         # Make the new class object
-        # `name` will be EventumError.<BaseClassName>.ClassName
+        # `name` will be Error.<BaseClassName>.ClassName
         name = '{}.{}'.format(baseclass.__name__, e_type)
         # We then create a class dynamically, using `type()`.
         # Arguments are:
@@ -264,8 +262,8 @@ def _make_subclasses(error_data, baseclass):
         _make_subclasses(subclasses, subclass)
 
         # Add this subclass as an attribute of the baseclass
-        setattr(EventumError, e_type, subclass)
+        setattr(Error, e_type, subclass)
 
-# Start the recursive generation of EventumError subclasses.  This code gets
+# Start the recursive generation of Error subclasses.  This code gets
 # run whenever the module is imported.
-_make_subclasses(_ERROR_DATA, EventumError)
+_make_subclasses(_ERROR_DATA, Error)
